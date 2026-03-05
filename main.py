@@ -32,7 +32,7 @@ def convert_file(input_path, output_format):
     # DOCX / MD / HTML → any format
     if input_path.lower().endswith((".docx", ".md", ".html")):
         pypandoc.convert_file(input_path, output_format, outputfile=str(output_path), extra_args=['--standalone'])
-        print(f"\n✅ Converted successfully: {output_path}")
+        print(f"\n Converted successfully: {output_path}")
         return
 
     # PDF -> TXT
@@ -41,7 +41,7 @@ def convert_file(input_path, output_format):
         text = "".join([page.extract_text() for page in reader.pages if page.extract_text()])
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(text)
-        print(f"\n✅ Extracted text to: {output_path}")
+        print(f"\n Extracted text to: {output_path}")
         return
 
     # TXT -> PDF
@@ -56,10 +56,10 @@ def convert_file(input_path, output_format):
                     c.showPage()
                     y = 800
         c.save()
-        print(f"\n✅ Converted successfully: {output_path}")
+        print(f"\n Converted successfully: {output_path}")
         return
 
-    print(f"\n❌ Unsupported conversion: {input_path} → {output_format}")
+    print(f"\n Unsupported conversion: {input_path} → {output_format}")
 
 if __name__ == "__main__":
     print("--- File Converter Tool ---")
@@ -70,4 +70,5 @@ if __name__ == "__main__":
         exit(1)
 
     out_fmt = input("Enter target format (pdf/txt/md/html/docx): ").lower().strip()
+
     convert_file(in_path, out_fmt)
